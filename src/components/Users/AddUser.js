@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import Card from '../UI/Card';
 import styles from './AddUser.module.css'
 import Button from '../UI/Button';
@@ -36,19 +36,17 @@ const AddUser = props => {
     setEnteredAge(event.target.value)
   }
 
-  const closeModalHandler = () =>{
+  const closeModalHandler = () => {
     setError('')
   }
 
   return (
-    <div>
+    <Fragment>
       {error && <ErrorModal errTitle={error.errTitle} message={error.mesage} onClose={closeModalHandler}></ErrorModal>}
       <Card className={styles.input}>
         <form onSubmit={addUserHandler}>
-
           <label htmlFor='username'>Username</label>
           <input id='username' value={enteredInput} type='text' onChange={userNameChangeHandler} />
-
           <label htmlFor='age'>Age (years)</label>
           <input id='age' value={enteredAge} type='number' min='0' onChange={userAgeChangeHandler} />
           <Button
@@ -59,7 +57,7 @@ const AddUser = props => {
           </Button>
         </form>
       </Card>
-    </div>
+    </Fragment>
   )
 }
 
